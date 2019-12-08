@@ -25,5 +25,7 @@ namespace Ahmadalli.DotNetUtils.Collections
                 throw new InvalidOperationException("dequeuing failed");
             return result;
         }
+
+        public bool TryPeek(out TEntity item) => _queue.TryPeek(out item);
     }
 }
