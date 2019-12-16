@@ -18,6 +18,14 @@ namespace Ahmadalli.DotNetUtils.Collections
             _countSemaphoreSlim.Release();
         }
 
+        public void EnqueueRange(IEnumerable<TEntity> range)
+        {
+            foreach (var entity in range)
+            {
+                Enqueue(entity);
+            }
+        }
+
         public async Task<TEntity> TryDequeueAsync(CancellationToken cancellationToken = default)
         {
             await _countSemaphoreSlim.WaitAsync(cancellationToken);
