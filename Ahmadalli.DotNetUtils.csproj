@@ -7,6 +7,9 @@
     <Authors>ahmadali shafiee</Authors>
     <Company>ahmadalli.net</Company>
     <RepositoryUrl>https://github.com/ahmadalli/Ahmadalli.DotNetUtils</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ahmadalli/Ahmadalli.DotNetUtils</PackageProjectUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
 </Project>
