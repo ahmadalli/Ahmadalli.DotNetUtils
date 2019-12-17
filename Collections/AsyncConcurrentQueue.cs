@@ -26,7 +26,7 @@ namespace Ahmadalli.DotNetUtils.Collections
             }
         }
 
-        public async Task<TEntity> TryDequeueAsync(CancellationToken cancellationToken = default)
+        public async Task<TEntity> DequeueAsync(CancellationToken cancellationToken = default)
         {
             await _countSemaphoreSlim.WaitAsync(cancellationToken);
             if (!_queue.TryDequeue(out var result))
