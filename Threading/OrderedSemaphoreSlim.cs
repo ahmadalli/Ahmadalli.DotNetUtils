@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ahmadalli.DotNetUtils.Threading
 {
-    public class OrderedSemaphoreSlim
+    public sealed class OrderedSemaphoreSlim : IDisposable
     {
         private readonly SemaphoreSlim _semaphore;
         private readonly ConcurrentQueue<TaskCompletionSource<bool>> _queue = new ConcurrentQueue<TaskCompletionSource<bool>>();
@@ -44,6 +44,11 @@ namespace Ahmadalli.DotNetUtils.Threading
         public void Release()
         {
             _semaphore.Release();
+        }
+
+        public void Dispose()
+        {
+            _semaphore?.Dispose();
         }
     }
 }
