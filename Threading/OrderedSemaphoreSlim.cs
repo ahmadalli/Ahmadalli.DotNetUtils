@@ -29,15 +29,15 @@ namespace Ahmadalli.DotNetUtils.Threading
             WaitAsync().Wait();
         }
 
-        public Task WaitAsync()
+        public Task WaitAsync(CancellationToken cancellationToken = default)
         {
             var tcs = new TaskCompletionSource<bool>();
             _queue.Enqueue(tcs);
-            _semaphore.WaitAsync().ContinueWith(t =>
+            _semaphore.WaitAsync(cancellationToken).ContinueWith(t =>
             {
                 if (_queue.TryDequeue(out var popped))
                     popped.SetResult(true);
-            });
+            }, cancellationToken);
             return tcs.Task;
         }
 
