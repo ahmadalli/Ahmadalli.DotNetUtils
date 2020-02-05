@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ahmadalli.DotNetUtils.Collections
 {
-    public class AsyncConcurrentQueue<TEntity>
+    public class AsyncConcurrentQueue<TEntity> : IEnumerable<TEntity>
     {
         private readonly ConcurrentQueue<TEntity> _queue = new ConcurrentQueue<TEntity>();
         private readonly SemaphoreSlim _countSemaphoreSlim = new SemaphoreSlim(0);
@@ -35,5 +36,12 @@ namespace Ahmadalli.DotNetUtils.Collections
         }
 
         public bool TryPeek(out TEntity item) => _queue.TryPeek(out item);
+
+        public IEnumerator<TEntity> GetEnumerator() => _queue.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
